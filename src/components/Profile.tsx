@@ -1,10 +1,12 @@
 import React from 'react';
 import {Card, Image} from 'semantic-ui-react';
+import ProfileModal from './ProfileModal'
 
 type ProfileType =  {
     userName: string,
     gender: string,
     dateOfBirth: Date,
+    img: string,
     place: string,
 }
 
@@ -18,9 +20,9 @@ export default class Profile extends React.Component<IProfileProps> {
 
     CardExampleCard = () => (
         <Card>
-        <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+        <Image src={this.props.profile.img} wrapped ui={false} />
             <Card.Content>
-            <Card.Header>{this.props.profile.userName}</Card.Header>
+            <Card.Header>{this.props.profile.userName.toUpperCase()}</Card.Header>
             <Card.Meta>
             <span className='date'>Gender {this.props.profile.gender}</span>
             </Card.Meta>
@@ -30,6 +32,7 @@ export default class Profile extends React.Component<IProfileProps> {
             <Card.Description>
             Location {this.props.profile.place}
             </Card.Description>
+            <ProfileModal name={this.props.profile.userName} img={this.props.profile.img} />
         </Card.Content>
         </Card>
     )
